@@ -1,0 +1,176 @@
+References
+
+Disclosure: This prototype was build as part of a learning exercise to contribute to a PhD project. 
+            Therefore many resourses were used to aid this process. 
+            A list of major and minor references appear below to acknowledge the great python community.
+            Some sections of code were extracted and run to aid understanding, and then reworked as appropriate.
+            This list is not extensive, but every effort has been made to include as many as possible.
+            All links were successfully accessed on 02/07/2020
+
+Major References:
+ - Ciw documentation, https://ciw.readthedocs.io/en/latest/
+ - Ciw github, https://github.com/CiwPython/Ciw
+ - Ciw, fixed number of customers from each class, https://github.com/CiwPython/Ciw/issues/171
+ - Textdistance, https://pypi.org/project/textdistance/, https://github.com/life4/textdistance
+ - Mouse Vs Python, https://www.blog.pythonlibrary.org/
+ - Pandas, https://pandas.pydata.org/pandas-docs/stable/reference/frame.html
+ - Stackoverflow, https://stackoverflow.com/
+ - scikit-learn, https://scikit-learn.org/stable/
+ - scikit-learn silhouette score, https://scikit-learn.org/stable/modules/generated/sklearn.metrics.silhouette_score.html?highlight=silhouette%20score#sklearn.metrics.silhouette_score
+ - Embedding in wx #2, canvas display with toolbar, https://matplotlib.org/3.1.1/gallery/user_interfaces/embedding_in_wx2_sgskip.html
+ - graphviz, https://graphviz.readthedocs.io/en/stable/index.html
+ - Compute confidence intervals, https://stackoverflow.com/questions/15033511/compute-a-confidence-interval-from-sample-data
+ - Python statistis library, https://docs.python.org/3/library/statistics.html
+ - pyclustering, https://pypi.org/project/pyclustering/
+ - pyclustering kmedoids, Andrei Novikov, GNU Public license, https://pyclustering.github.io/docs/0.9.3/html/de/dfd/namespacepyclustering_1_1cluster_1_1kmedoids.html
++ wxpython
+ - wx.Notebook, https://wiki.wxpython.org/Notebooks
+ - wxpython, wx.Notebook, https://wxpython.org/Phoenix/docs/html/wx.Notebook.html
+ - Mouse vs python, book controls, Mike 09/12/2009 http://www.blog.pythonlibrary.org/2009/12/09/the-%e2%80%9cbook%e2%80%9d-controls-of-wxpython-part-2-of-2/
+ - Mouse vs python, wxpython: a simple notebook example, Mike 15/09/2010, http://www.blog.pythonlibrary.org/2010/09/15/wxpython-a-simple-notebook-example/
+ - Mouse vs python, wxpython: all about menus, Mike 14/02/2012, http://www.blog.pythonlibrary.org/2012/02/14/wxpython-all-about-menus/
+ - wxpython, wx.menuitem, https://wxpython.org/Phoenix/docs/html/wx.MenuItem.html#wx-menuitem
+ - Stackoverflow, wpython add scroll bar, https://stackoverflow.com/questions/31706071/wxpython-need-to-add-scrollbar-to-staticbox-is-this-possible
++ Mouse vs python
+ - Mouse vs python wxpython book controls, Mike 03/12/2009, http://www.blog.pythonlibrary.org/2009/12/03/the-book-controls-of-wxpython-part-1-of-2/
+ - Mouse vs python, wxpython sizers tutorial, Mike 18/05/2008, https://www.blog.pythonlibrary.org/2008/05/18/a-wxpython-sizers-tutorial/
+ - Mouse vs python, introduction to grids, Mike 18/03/2010, http://www.blog.pythonlibrary.org/2010/03/18/wxpython-an-introduction-to-grids/
+ - Mouse vs python, grid tips and tricks, Mike 04/04/2010, http://www.blog.pythonlibrary.org/2010/04/04/wxpython-grid-tips-and-tricks/
+ - Mouse vs python, an introduction to splitter windows, Mike 18/08/2013, https://www.blog.pythonlibrary.org/2013/10/18/wxpython-an-introduction-to-splitterwindows/
+ - Mouse vs python, putting a background image on a panel, Mike 18/03/2010, http://www.blog.pythonlibrary.org/2010/03/18/wxpython-putting-a-background-image-on-a-panel/
+ - Mouse vs python, how to update a progress bar from a thread, Mike 04/09/2013, https://www.blog.pythonlibrary.org/2013/09/04/wxpython-how-to-update-a-progress-bar-from-a-thread/
+ - Mouse vs python, wxpython and threads, Mike 22/05/2010, https://www.blog.pythonlibrary.org/2010/05/22/wxpython-and-threads/
+ - Mouse vs python, wxpython how to open a second window/frame, Mike 19/10/2018, https://www.blog.pythonlibrary.org/2018/10/19/wxpython-how-to-open-a-second-window-frame/
+ - Mouse vs python, wxpython about box, Mike 11/06/2008, http://www.blog.pythonlibrary.org/2008/06/11/wxpython-creating-an-about-box/
++ Youtube resources
+ - Johnnyboycurtis, wxpython tutorial 01 first app, https://www.youtube.com/watch?v=2S4t8-GcGPc
+ - Johnnyboycurtis, wxpython tutorial 03 message box app, https://www.youtube.com/watch?v=dlpgiskBVLE
+ - Johnnyboycurtis, wxpython tutorial 04 window sizers, https://www.youtube.com/watch?v=U11UjPyN6jI 
+ - Johnnyboycurtis, wxpython tutorial 5: menu bar app, https://www.youtube.com/watch?v=4tcC2ahyQfs, https://github.com/Johnnyboycurtis/wxtutorials
+ - Corey Schafer, https://www.youtube.com/channel/UCCezIgC97PvUuR4_gbFUs5g
+ - Reuven Lerner, Python comments vs. docstrings: What, how, and why, https://www.youtube.com/watch?v=wI1hZHjddwk
+
+
+
+Minor References:
+ + Matplotlib
+  - Stackoverflow, Binning by days of the week, https://stackoverflow.com/questions/38357632/binning-by-days-of-the-week-pandas-python-matplotlib
+  - Matplotlib, Matplotlib Gallery, https://matplotlib.org/3.1.1/gallery/index.html
+  - Matplotlib, Matplotlib Axis, https://matplotlib.org/3.1.1/api/axes_api.html
+  - Stackoverflow, Add grid to plot, https://stackoverflow.com/questions/8209568/how-do-i-draw-a-grid-onto-a-plot-in-python
+  - Daleline, How to customise the NavagationToolbar2 toolbar in matplotlib, https://dalelane.co.uk/blog/?p=778
+  - Stackoverflow, Update toolbar, https://stackoverflow.com/questions/12695678/how-to-modify-the-navigation-toolbar-easily-in-a-matplotlib-figure-window
+  - Matplotlib, Interactive navigation toolbar, https://matplotlib.org/users/navigation_toolbar.html
+  - Kite, Set spacing between plots, https://kite.com/python/answers/how-to-set-the-spacing-between-subplots-in-matplotlib-in-python
+  - Kite, How to save images at very high quality, https://www.kite.com/python/answers/how-to-save-images-at-very-high-quality-in-python
+  - Stackoverflow, How to refresh figure canvas, https://stackoverflow.com/questions/2441906/matplotlib-how-to-refresh-figure-canvas
+  - Stackoverflow, Subplots adjust, https://stackoverflow.com/questions/44665183/cant-remove-matplotlibs-padding-around-imshow-figure
+  - Stackoverflow, Remove empty subplots, https://stackoverflow.com/questions/38522408/remove-empty-sub-plots-in-matplotlib-figure
+  - Stackoverflow, ticklabels fontsize, https://stackoverflow.com/questions/6390393/matplotlib-make-tick-labels-font-size-smaller
+  - Matplotlib, Subplots overall title, https://matplotlib.org/3.1.1/gallery/subplots_axes_and_figures/figure_title.html
+  - Stackoverflow, Global legend position, https://stackoverflow.com/questions/7526625/matplotlib-global-legend-and-title-aside-subplots
+
+ + Pandas
+  - Pandas, DataFrame plot, https://pandas.pydata.org/pandas-docs/version/0.23.4/generated/pandas.DataFrame.plot.html
+  - Stackoverflow, Convert dataframe row to flat list, https://stackoverflow.com/questions/34238391/convert-one-dataframe-row-to-flat-list
+  - Stackoverflow, Return column names of specific value, https://stackoverflow.com/questions/38331568/return-the-column-names-for-a-specific-value-in-a-pandas-dataframe
+  - Stackoverflow, Read excel datetime converter, https://stackoverflow.com/questions/42958217/pandas-read-excel-datetime-converter
+  - Pandas, Dataframe astype, https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.astype.html
+  - Stackoverflow, Check if index value exists, https://stackoverflow.com/questions/23549231/check-if-a-value-exists-in-pandas-dataframe-index
+  - Stackoverflow, Add list to dataframe row, https://stackoverflow.com/questions/26309962/appending-a-list-or-series-to-a-pandas-dataframe-as-a-row
+  - Stackoverflow, Combine columns, https://stackoverflow.com/questions/43898035/pandas-combine-column-values-into-a-list-in-a-new-column/43898233
+
+ + Scipy
+  - SciPy, stats poisson, https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.poisson.html
+ 
+ + Wxpython
+  - wxpython, Thumbnail gallery, https://wxpython.org/Phoenix/docs/html/gallery.html
+  - Stackoverflow, wxpython Menu id, https://stackoverflow.com/questions/30464177/using-wxpython-menus-id-what-does-it-mean-and-which-should-i-use-for-x
+  - wxpython, wx, https://wxpython.org/Phoenix/docs/html/wx.1moduleindex.html
+  - wxpython users, Double click splitter problem, http://wxpython-users.1045709.n5.nabble.com/problem-double-clicking-on-a-splitter-td2806715.html
+  - Stackoverflow, Launch external applications, open PDF help file, https://stackoverflow.com/questions/54335378/launch-external-application-from-wxpython
+  - wxpython users, Button positioning, http://wxpython-users.1045709.n5.nabble.com/button-positioning-td2333485.html
+  - Mouse vs python, Creating a simple photoviewer, Mike 26/03/2010, http://www.blog.pythonlibrary.org/2010/03/26/creating-a-simple-photo-viewer-with-wxpython/
+  - Mouse vs python, Fire multiple events, Mike 24/07/2012, http://www.blog.pythonlibrary.org/2012/07/24/wxpython-how-to-fire-multiple-event-handlers/
+  - wxpython, Directory dialog, https://wxpython.org/Phoenix/docs/html/wx.DirDialog.html#wx.DirDialog.GetPath
+  - Stackoverflow, Fill choice box choices, https://stackoverflow.com/questions/23676576/filling-wx-choice-during-selection
+  - Stackoverflow, use combo box in grid, https://stackoverflow.com/questions/7348431/how-to-place-a-combobox-in-wxgrid-python
+  - wxpython, grid cell choice editor, https://docs.wxpython.org/wx.grid.GridCellChoiceEditor.html
+  - wxpython, grid, https://wxpython.org/Phoenix/docs/html/wx.grid.Grid.html#wx.grid.Grid.GetCellValue
+  - Mouse vs python, menu bar, Mike 14/02/2012, https://www.blog.pythonlibrary.org/2012/02/14/wxpython-all-about-menus/
+  - Mouse vs python, menu bar, https://wxpython.org/Phoenix/docs/html/wx.Menu.html#wx.Menu.Attach
+  - Mouse vs python, menu bar, https://wxpython.org/Phoenix/docs/html/wx.MenuBar.html#wx.MenuBar.Attach
+  - Mouse vs python, about box, Mike 11/06/2008, https://www.blog.pythonlibrary.org/2008/06/11/wxpython-creating-an-about-box/
+  - Mouse vs python, about dialog box, https://docs.wxpython.org/wx.adv.AboutDialogInfo.html
+
++ Wxpython error
+  - wx wdigets forum, wx wigets forum, Error on closing grid, https://forums.wxwidgets.org/viewtopic.php?t=33426
+  - wx widgets, Error on closing grid, https://github.com/wxWidgets/Phoenix/issues/673
+  - Stackoverflow, Error on closing grid, https://stackoverflow.com/questions/58724668/why-does-an-error-occur-after-editing-a-grid-cell
+  - wx widgets, Error on closing grid, https://github.com/wxWidgets/Phoenix/issues/627
+
+ + Graphviz
+  - Graphviz, Examples, https://graphviz.readthedocs.io/en/stable/examples.html
+  - Graphviz, Pocket Referece, https://graphs.grevian.org/example
+  - Stackoverflow, Grouping output edges from graphviz, https://stackoverflow.com/questions/5438273/grouping-output-edges-from-graphviz
+  - Martin Loetzsch, S-Dot 1.2, Attribute "headport", arrow position formatting, http://martin-loetzsch.de/S-DOT/headport.html
+  - Martin Loetzsch, S-Dot 1.2, Element "edge", http://martin-loetzsch.de/S-DOT/edge.html
+  - Stackoverflow, Straight edge between clusters in Graphviz, https://stackoverflow.com/questions/3006792/straight-edge-between-clusters-in-graphviz
+  - Stackoverflow, Adjusting node placement, https://stackoverflow.com/questions/58514706/graphviz-dot-adjusting-node-placement-and-edge-shape
+  - Graphviz, Graphviz node, edge and graph attributes, tailport, https://www.graphviz.org/doc/info/attrs.html#d:tailport
+ 
+ + General
+  - Stackoverflow, How to implement R poisson distribution in python, https://stackoverflow.com/questions/54617429/how-to-implement-this-r-poisson-distribution-in-python
+  - Programiz, Multiply Matrices, https://www.programiz.com/python-programming/examples/multiply-matrix
+  - Stackoverflow, Vector Multiplication, https://stackoverflow.com/questions/21562986/numpy-matrix-vector-multiplication
+  - Enigineering Statistics Handbook, Related Distributions, https://www.itl.nist.gov/div898/handbook/eda/section3/eda362.htm
+  - Google, rgd colour picker, https://www.google.com/search?q=rgb+color+picker&rlz=1C1GCEU_en-GBGB859GB859&oq=rgb+col&aqs=chrome.0.0l2j69i57j0l5.2604j0j9&sourceid=chrome&ie=UTF-8
+  - Stackoverflow, How to redirect print output to a file, https://stackoverflow.com/questions/7152762/how-to-redirect-print-output-to-a-file-using-python
+  - Stackoverflow, Finding factors of a number, https://stackoverflow.com/questions/6800193/what-is-the-most-efficient-way-of-finding-all-the-factors-of-a-number-in-python
+  - Stackoverflow, How to make a flat list out of lists of list, https://stackoverflow.com/questions/952914/how-to-make-a-flat-list-out-of-list-of-lists
+  - Geeks for geeks, Find closest number to k in list, https://www.geeksforgeeks.org/python-find-closest-number-to-k-in-given-list/
+  - Stackoverflow, Creating a range of dates, https://stackoverflow.com/questions/993358/creating-a-range-of-dates-in-python
+  - Coderwall, Flattern list of lists, https://coderwall.com/p/rcmaea/flatten-a-list-of-lists-in-one-line-in-python
+  - Stackoverflow, Flattening a shallow list, https://stackoverflow.com/questions/406121/flattening-a-shallow-list-in-python
+  - Stackoverflow, Remove NaN from list, https://stackoverflow.com/questions/37147735/remove-nan-value-from-a-set
+  - Stackoverflow, Remove nan form list, https://stackoverflow.com/questions/45695373/removing-a-nan-from-a-list
+  - Stackoverflow, Remove nan from list, https://stackoverflow.com/questions/21011777/how-can-i-remove-nan-from-list-python-numpy
+  - Kite, Generate random dates, https://www.kite.com/python/answers/how-to-generate-a-random-date-between-two-dates-in-python
+  - Stackoverflow, Add dictionary to row of dataframe, https://stackoverflow.com/questions/42632470/how-to-add-dictionaries-to-a-dataframe-as-a-row
+  - Stackoverflow, Split string at \, https://stackoverflow.com/questions/37484624/split-string-at-delimiter-in-python
+  - guru99, Check if file exists, https://www.guru99.com/python-check-if-file-exists.html
+  - Stackoverflow, Delete sheet from workbook, https://stackoverflow.com/questions/58585857/deleting-sheet-from-workbook-python
+  - Stackoverflow, Split string every nth character, https://stackoverflow.com/questions/9475241/split-string-every-nth-character
+  - w3schools, Remove duplicates from list, https://www.w3schools.com/python/python_howto_remove_duplicates.asp
+  - Python, PEP 257 doc string convention, https://www.python.org/dev/peps/pep-0257/
+
+
++ Scikit Leran
+  - cluster kmediods extra, https://scikit-learn-extra.readthedocs.io/en/latest/generated/sklearn_extra.cluster.KMedoids.html
+
+
+
+Lisense agreements:
+ - Matplotlib, https://matplotlib.org/3.1.1/users/license.html
+ - The Mouse Vs Python, https://www.blog.pythonlibrary.org/license/
+ - stackoverflow, https://stackoverflow.com/legal/terms-of-service
+ - wxpython, https://wxpython.org/pages/license/
+ - Ciw, https://github.com/CiwPython/Ciw/blob/master/LICENSE.txt
+ - Scikit-learn, https://scikit-learn.org/stable/about.html, Scikit-learn: Machine Learning in Python
+ - pyclustering, https://pyclustering.github.io/docs/0.9.3/html/index.html
+ - text distance, MIT Lisense, https://github.com/life4/textdistance/blob/master/LICENSE
+ - Graphviz, https://github.com/xflr6/graphviz/blob/master/LICENSE.txt
+ - Python Statistics library, https://github.com/python/cpython/blob/3.8/LICENSE
+ - Pandas, https://pandas.pydata.org/docs/getting_started/overview.html#license
+ - Scipy, https://www.scipy.org/scipylib/license.html
+ - wx widgets, https://github.com/wxWidgets/wxWidgets/blob/master/docs/licence.txt
+ - S-Dot, http://martin-loetzsch.de/S-DOT/licence.html
+ - Engineering Statistics Handbook, https://www.itl.nist.gov/div898/handbook/index.htm
+
+Lisence agreements:
+ - Pythonspot, wxpython tabs, python tutorials, https://pythonspot.com/wxpython-tabs/
+ - Python Spot, wxpython menu, python tutorials, https://pythonspot.com/wxpython-menu/
+ - Python tutorials, https://pythonspot.com/terms-of-use/ - This was originally used to inform the building of notebook tabs and menu bar, sine reviewing the lisence every effort has been made to remove the knowledge gained from this reference
+
+
+

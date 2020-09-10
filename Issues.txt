@@ -1,0 +1,4 @@
+Known Issues:
+
++ Error on close - due to grid cell editor
++ Error message dialog boxes do not force stop the code
