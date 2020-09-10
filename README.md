@@ -1,4 +1,5 @@
-# Sim.Pro.Flow Logo
+<img src="/Sim.Pro.Flow/Sim.Pro.Flow_Logo.png">
+
 Sim.Pro.Flow is a decision support tool that automates the build of a discrete event simulation and allows for mapping, modelling and improving of system pathways.
 ___
 ## Features
@@ -51,4 +52,5 @@ This tool was built as part of a learning exercise to contribute to a PhD projec
 Sim.Pro.Flow is in prototype development phase and as such has not gone through extensive user testing or error checking. By using Sim.Pro.Flow the user takes on all responsibility to ensure that the process and as such all results are correct.
 
 This work has resulted from research funded by a Cancer Research UK grant ‘Analysis and Modelling of a Single Cancer Pathway Diagnostics’ (Early Diagnosis Project Award A27882) and from a KESS2 grant under the project title ‘Smart Simulation and Modelling of Complex Cancer Systems’. Knowledge Economy Skills Scholarships (KESS) is a pan-Wales higher level skills initiative led by Bangor University on behalf of the HE sector in Wales. It is part funded by the Welsh Government’s European Social Fund (ESF) convergence programme for West Wales and the Valleys.
- ## Funder Logos
+
+<img src="/Sim.Pro.Flow/Funder_logos.png">
