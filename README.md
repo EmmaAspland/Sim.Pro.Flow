@@ -39,7 +39,7 @@ The same clustering technique as above is used here but with the number of conne
 
 __Modelling__
 
-A discrete event simulation, using the python library Ciw, can be automatically built from each of the data levels discussed above. The simulation can either be run in basic form (runs once) to collect in depth results and graphics, or through trials (multiple runs) allowing confidence intervals.
+A discrete event simulation, using the python library [Ciw](https://ciw.readthedocs.io/en/latest/), can be automatically built from each of the data levels discussed above. The simulation can either be run in basic form (runs once) to collect in depth results and graphics, or through trials (multiple runs) allowing confidence intervals.
 
 __Improving__
 
