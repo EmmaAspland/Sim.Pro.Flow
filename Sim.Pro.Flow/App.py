@@ -2591,7 +2591,7 @@ class HoldPanel(wx.Panel):
 class AboutFrame(wx.Frame):
     """About Frame."""
     def __init__(self):
-        wx.Frame.__init__(self, parent=None, title='About', pos=(500,300), size=(640,200))
+        wx.Frame.__init__(self, parent=None, title='About', pos=(320,320), size=(1015,200))
         """Set up about frame.
         
         + official about box will appear
@@ -2603,12 +2603,12 @@ class AboutFrame(wx.Frame):
         about.SetName('Sim.Pro.Flow')
         about.SetVersion('Prototype 2.0')
         about.SetDescription('Sim.Pro.Flow is a decision support tool that allows for mapping, modelling and scenario testing of a system. '+
-                                'Sim.Pro.Flow works from pathway strings generated from date stap data. ' +
-                                'The main feature of Sim.Pro.Flow is automated build and visulisation of a discrete event simulation. ' +
+                                'Sim.Pro.Flow works from pathway strings generated from date stamp data. ' +
+                                'The main feature of Sim.Pro.Flow is to automate the build and visulisation of a discrete event simulation. ' +
                                 'This prototype was build as part of a learning exercise to contribute to a PhD project, ' +
                                 'in collaboration with Velindre Cancer Centre. \n' +
                                 '\n' +
-                                'Sim.Pro.Flow is in prototype development phase and as such has not gone through extensive user testing or error checking.' +
+                                'Sim.Pro.Flow is in prototype development phase and as such has not gone through extensive user testing or error checking. ' +
                                 'By using Sim.Pro.Flow the user takes on all responsibility to ensure that the process and as such all results are correct. \n'+
                                 '\n' +
                                 'Acknowledgements: Paul Harper, Daniel Gartner, Geraint Palmer, Edilson Arruda. \n' +
