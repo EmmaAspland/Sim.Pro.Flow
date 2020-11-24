@@ -2,3 +2,20 @@ Known Issues:
 
 + Error on close - due to grid cell editor
 + Error message dialog boxes do not force stop the code
+
++ Process based simulation should have ciw.no_routing for nodes which are not also arrival nodes.
+  - this should not effect the simulation as the routes are formed based on the individual id_number of customer class.
++ Language error: Centroids should be Medoids
++ Names of distance matrix excel sheets too long
++ Capacity calculation should consider number of patients not number of tests
++ Capacity error if no solution
++ Capacity disable setup capacity button after first click
++ Capacity plot axis number of working days
++ Capacity plot over plot max
++ Capacity get target days from raw wait days
++ Capacity setup comment incorrect
++ Simulation Trials naming doesn't add to list of simulation names
++ Summary sheet heatmap should be for data not df
++ Simulation name process can be P_ insted of ce_
++ Main tables aren't saved
++ Naming of classic centroids excel sheet should be df
