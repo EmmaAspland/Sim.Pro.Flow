@@ -17,5 +17,7 @@ Known Issues:
 + Simulation Trials naming doesn't add to list of simulation names
 + Summary sheet heatmap should be for data not df
 + Simulation name process can be P_ insted of ce_
-+ Main tables aren't saved
 + Naming of classic centroids excel sheet should be df
+
+Addressed Issues:
++ Main tables aren't saved - File Menu Save item, Tables saved as Results_Tables.xlsx

@@ -2655,6 +2655,8 @@ class MainFrame(wx.Frame):
         self.Bind(wx.EVT_MENU, self.onFileHelp, Help_File_MenuItem)
         Export_File_MenuItem = File_Menu.Append(wx.NewId(), 'Export', 'Save the raw python code.')
         self.Bind(wx.EVT_MENU, self.onFileExport, Export_File_MenuItem)
+        Save_File_MenuItem = File_Menu.Append(wx.NewId(), 'Save', 'Save the results tables.')
+        self.Bind(wx.EVT_MENU, self.onSaveResults, Save_File_MenuItem)
         TopMenuBar.Append(File_Menu, 'File')
         self.SetMenuBar(TopMenuBar)
 
@@ -2688,6 +2690,22 @@ class MainFrame(wx.Frame):
             pydoc.writelines('\n')
             pydoc.writelines('Routing_Dict' + ' = ' + str(self.sim_tab.tabOne_Setup.Routing_Dict))
 
+    def onSaveResults(self, event):
+        """Save Results tables from Simulation Tab Results Subtab.
+        
+        Save dataframe_T1, dataframe_T2, dataframe_T3, dataframe_T4 as sheets in Results_Tables.xlsx.
+        """
+        if self.data_tab.activity_codes == {}:
+            error_message = wx.MessageBox(parent=None, message = 'Please select activities before saving.', 
+                                        caption='Error',style= wx.OK)
+        else:
+            with pd.ExcelWriter(self.data_tab.SaveLoc + 'Results_Tables.xlsx', engine="openpyxl", mode='w') as writer:
+                self.data_tab.dataframe_T1.to_excel(writer,'Top Level')
+                self.data_tab.dataframe_T2.to_excel(writer,'Frequency')
+                self.data_tab.dataframe_T3.to_excel(writer,'Top 10 Pathways')
+                self.data_tab.dataframe_T4.to_excel(writer,'Activity Waiting Time')
+            Info_message = wx.MessageBox(parent=None, message = 'Results_Tables have been saved.', 
+                                        caption='Information',style= wx.OK)
 
 #----------------------------------------------------------------------
 if __name__ == "__main__":
