@@ -5,7 +5,6 @@ Known Issues:
 
 + Process based simulation should have ciw.no_routing for nodes which are not also arrival nodes.
   - this should not effect the simulation as the routes are formed based on the individual id_number of customer class.
-+ Language error: Centroids should be Medoids
 + Names of distance matrix excel sheets too long
 + Capacity calculation should consider number of patients not number of tests
 + Capacity error if no solution
@@ -24,3 +23,7 @@ Addressed Issues:
 Date: 4-12-2020
 Version: 2.0
 + Main tables aren't saved - File Menu Save item, Tables saved as Results_Tables.xlsx
+
+Date: 7-12-2020
+Version: 2.1
++ Language error: Centroids should be Medoids - Process Centroids changed to Process Medoids

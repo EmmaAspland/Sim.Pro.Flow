@@ -1655,7 +1655,7 @@ class ModelSimPanel(wx.Panel):
         main_sizer = wx.StaticBoxSizer(main_box, wx.VERTICAL)
         # add sim type        
         main_sizer.AddSpacer(20)
-        self.sim_type = wx.Choice(self, choices=['Raw Pathways', 'Full Transitions', 'Clustered Transitions', 'Process Centroids'])
+        self.sim_type = wx.Choice(self, choices=['Raw Pathways', 'Full Transitions', 'Clustered Transitions', 'Process Medoids'])
         self.sim_type.SetSelection(0)
         setup_simulation = wx.Button(parent=self, label = "Auto Setup Simulation")
         setup_simulation.Bind(event=wx.EVT_BUTTON, handler=self.onAutoSetupSim)
@@ -1735,7 +1735,7 @@ class ModelSimPanel(wx.Panel):
         + Raw Pathways: All arrivals calculated for dummy node
         + Full Transitions: Row per activity arrivals
         + Clustered Transtions: Row per activity arrivals, columns repeated per clusters (k)
-        + Process Centroids: Row per centroid
+        + Process Medoids: Row per centroid
         """
         self.ArrivalPeriodGrid = ArrivalPeriodGrid
         self.ArrivalsGrid = ArrivalsGrid
@@ -1821,7 +1821,7 @@ class ModelSimPanel(wx.Panel):
                     self.ArrivalsGrid.SetCellValue(r,(cluster*5)+1,str(c_input_arrivals[r]))
                     self.ArrivalsGrid.SetCellValue(r,(cluster*5)+2,str(Arrival[r]))
         
-        if self.sim_type_selected == 'Process Centroids':
+        if self.sim_type_selected == 'Process Medoids':
             # custom value arrival period
             self.int_choices = wx.grid.GridCellNumberEditor(min=0, max=1000000) 
             self.ArrivalPeriodGrid.SetCellEditor(0,1,self.int_choices)
@@ -1857,7 +1857,7 @@ class ModelSimPanel(wx.Panel):
         + Raw Pathways: All Pathways performed, with node representation for ciw
         + Full Transitions: Transition matrix between activities
         + Clustered Transtions: Transition matrix between activities, per clusters (k)
-        + Process Centroids: Centroids only, with representation value and node representation for ciw
+        + Process Medoids: Centroids only, with representation value and node representation for ciw
         """
         self.PathwaysGrid = PathwaysGrid
         
@@ -1918,7 +1918,7 @@ class ModelSimPanel(wx.Panel):
                 class_no += 1
             self.PathwaysGrid.AutoSizeColumns(setAsMin=True)
             
-        if self.sim_type_selected == 'Process Centroids':
+        if self.sim_type_selected == 'Process Medoids':
             # create grid
             self.PathwaysGrid.AppendCols(2)
             self.PathwaysGrid.AppendRows(len(self.MainClusteringPanel.process_clustering_results))
@@ -1994,7 +1994,7 @@ class ModelSimPanel(wx.Panel):
                 self.plot_options.append(multip_draw_names)
                 self.plot_selection.Clear()
                 self.plot_selection.AppendItems(self.plot_options)
-        elif self.sim_type_selected == 'Process Centroids':
+        elif self.sim_type_selected == 'Process Medoids':
             process_draw_names = [draw_file_name + '_' + str(self.MainClusteringPanel.process_k), 
                                   draw_file_name + '_' + str(self.MainClusteringPanel.process_k) + '_pathways', 
                                   draw_file_name + '_' + str(self.MainClusteringPanel.process_k) + '_linked']
@@ -2088,7 +2088,7 @@ class ModelSimPanel(wx.Panel):
         # Get number of clusters
         if self.sim_type_selected == 'Clustered Transitions':
             cluster_k = len(self.arrivals)
-        elif self.sim_type_selected == 'Process Centroids':
+        elif self.sim_type_selected == 'Process Medoids':
             cluster_k = len(self.arrivals[0])
         else:
             cluster_k = 0

@@ -187,7 +187,7 @@ def get_draw_network(sim_type, letters, Matrix, save_location, file_name, proces
             c_file_name = save_location + 'Network_diagrams/'  + file_name + '_' + c_class
             transitions.draw_network(letters, c_matrix, c_file_name, LR, penwidth, round_to)
     
-    if sim_type == 'Process Centroids':
+    if sim_type == 'Process Medoids':
         adjust_save_file_name = save_location + 'Network_diagrams/' + file_name + '_' + str(process_k) + '_adjust_' + str(adjust)
         transitions.draw_network(letters, Matrix[0], adjust_save_file_name, LR, penwidth, round_to)
         file_name_network = save_location + 'Network_diagrams/'  + file_name + '_' + str(process_k)
@@ -256,7 +256,7 @@ def AutoSetupInputs(sim_type, data, activity_codes, multi_activity_codes, header
     + Raw Pathways: Routing and arrivals at dummy node created
     + Full Transitions: arrivals row matrix and routing transition matrix
     + Clustered Transitions: arrivals row matrix and routing transition matrix per class (k)
-    + Process Centroids: Routing of centroids and arrivals per class 
+    + Process Medoids: Routing of centroids and arrivals per class 
     """
     # if formatted data use multi_activity_codes
     if original_name == 'original_formatted':
@@ -290,7 +290,7 @@ def AutoSetupInputs(sim_type, data, activity_codes, multi_activity_codes, header
             input_routing[class_name] = Matrix_prob
             draw_matrix[class_name] = c_draw_matrix
 
-    if sim_type == 'Process Centroids':
+    if sim_type == 'Process Medoids':
         draw_matrix = []
         adjust_input_arrival, adjust_draw_matrix, adjust_Matrix_prob = transitions.get_transitions(data['pathways'], letters, adjust) 
         draw_matrix.append(adjust_draw_matrix)
@@ -321,7 +321,7 @@ def ConstructSim(sim_type, week, warm_type, letters, individuals, overall_period
         return copy.deepcopy(Routes[route_number])
 
     def process_routing_function(ind):
-        """Return route from customer class - for Process Centroids."""
+        """Return route from customer class - for Process Medoids."""
         route_number = ind.customer_class
         return copy.deepcopy(Routes[route_number])
 
@@ -340,7 +340,7 @@ def ConstructSim(sim_type, week, warm_type, letters, individuals, overall_period
         if warm_type == 'Itterative':
             Routes = Routes * warm
         All_Routing = [raw_routing_function for _ in range(len(letters)+1)]
-    elif sim_type == 'Process Centroids':
+    elif sim_type == 'Process Medoids':
         All_Routing = [process_routing_function for _ in range(len(letters))]
     else:
         All_Routing = Routes

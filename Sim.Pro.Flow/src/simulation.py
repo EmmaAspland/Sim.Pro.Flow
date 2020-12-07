@@ -98,10 +98,10 @@ def define_input_capacity(data, activity_codes, headers, letters, original_name)
 def define_input_routing(sim_type, data, letters, Matrix_prob):
     """Define routes for simulation.
 
-    + Raw Pathways and Process Centroids: use get routes
+    + Raw Pathways and Process Medoids: use get routes
     + Full Transitions and Clustered Trnasitions: use transition matrix
     """
-    if sim_type == 'Raw Pathways' or sim_type == 'Process Centroids':
+    if sim_type == 'Raw Pathways' or sim_type == 'Process Medoids':
         Routes = getRoutes(sim_type, data, letters)
     else:
         Routes = Matrix_prob
@@ -116,7 +116,7 @@ def define_arrivals(sim_type, letters, individuals, arrivals, Routes):
     + Raw Pathways: Limited Exponential for dummy node of total arrival rate
     + Full Transitions: Exponential activiy arrival rate
     + Clustered Transitions: Class per cluster with Exponential activity arrival rate
-    + Process Centroids: Class per centroid with Exponential activity arrival rate
+    + Process Medoids: Class per centroid with Exponential activity arrival rate
     """
     if sim_type == 'Raw Pathways':
         Arrival = [custom_ciw.LimitedExponential(arrivals[0][0],individuals)] + [ciw.dists.NoArrivals() for i in letters]
@@ -131,7 +131,7 @@ def define_arrivals(sim_type, letters, individuals, arrivals, Routes):
             class_name = 'Class '+ str(c)
             Arrival[class_name] = arrival_dist
 
-    if sim_type == 'Process Centroids':
+    if sim_type == 'Process Medoids':
         Arrival = {}
         for c, route in enumerate(Routes):
             arrival_dist = [ciw.dists.Exponential(arrivals[0][c]) if route[0] - 1 == code else ciw.dists.NoArrivals() for code in range(len(letters))]
@@ -149,7 +149,7 @@ def define_service(sim_type, letters, service, cluster_k):
     + Raw Pathways: Service rate per activity plus deterministic 0 for dummy arrival node
     + Full Transitions: Service rate per activity
     + Clustered Transitions: Class per cluster with Service rate per activity
-    + Process Centroids: Class per centroid with Service rate per activity
+    + Process Medoids: Class per centroid with Service rate per activity
     """
     # Det 0.1 as default
     Service_distribution = []
