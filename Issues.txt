@@ -20,4 +20,7 @@ Known Issues:
 + Naming of classic centroids excel sheet should be df
 
 Addressed Issues:
+
+Date: 4-12-2020
+Version: 2.0
 + Main tables aren't saved - File Menu Save item, Tables saved as Results_Tables.xlsx
