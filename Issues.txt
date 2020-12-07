@@ -14,7 +14,6 @@ Known Issues:
 + Capacity get target days from raw wait days
 + Capacity setup comment incorrect
 + Simulation Trials naming doesn't add to list of simulation names
-+ Summary sheet heatmap should be for data not df
 + Naming of classic centroids excel sheet should be df
 
 Addressed Issues:
@@ -27,3 +26,4 @@ Date: 7-12-2020
 Version: 2.1
 + Language error: Centroids should be Medoids - Process Centroids changed to Process Medoids
 + Simulation name process can be P_ insted of ce_
++ Summary sheet heatmap should be for data not df

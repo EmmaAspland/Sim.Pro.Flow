@@ -78,12 +78,12 @@ def boxplotAll(data, activity_codes, save_location, original_name):
     plt.close()
 
 
-def heatAll(df, activity_codes, save_location):
+def heatAll(data, activity_codes, save_location):
     """Creates a heatplot of all unique pathways."""
-    max_length = len(max(df['pathway'], key=len))
+    max_length = len(max(data['pathways'], key=len))
     all_pathways =[]
 
-    for row in df.pathway:
+    for row in data.pathways:
         all_pathways.append(list(row.ljust(max_length,' ')))
 
     letters = [code for code in activity_codes.keys()]
@@ -122,7 +122,7 @@ def SummarySheet(data, df, activity_codes, save_location, original_name):
     summary_Freq(data, activity_codes, save_location)
     index_occur = [pathway for i, pathway in enumerate(df.pathway) if i < 10]
     num_occur = [count for i, count in enumerate(df.counts) if i < 10]
-    heatAll(df, activity_codes, save_location)
+    heatAll(data, activity_codes, save_location)
     mean_total = str(round(data.totaltime.mean(),2))
     median_total = str(round(data.totaltime.median(),2))
     per25_total = str(round(data.totaltime.quantile(0.25),2))
