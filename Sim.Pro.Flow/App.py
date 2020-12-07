@@ -2121,6 +2121,7 @@ class ModelSimPanel(wx.Panel):
             # Add trials and runs to sim name if trials selected
             if self.trials != 1:
                 self.current_sim_name = self.current_sim_name + '_Trials_' + str(self.trials)
+                self.sim_name.SetValue(self.current_sim_name)
         
             # Construct simulation network
             self.Network, self.Servers_Schedules, self.time_run, self.individuals = Functions.ConstructSim(self.sim_type_selected, self.week_type, self.warm_type, self.DataPanel.letters, self.individuals, self.overall_period, cluster_k,
