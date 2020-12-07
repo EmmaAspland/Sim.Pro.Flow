@@ -697,7 +697,7 @@ class MatrixThread(Thread):
                    4: textdistance.needleman_wunsch.distance,
                    5: textdistance.Jaccard(qval=2).distance,
                    6: textdistance.Cosine(qval=2).distance,
-                   7: textdistance.lcsstr.distance,
+                   7: textdistance.lcsseq.distance,
                    8: 'ModNW'}
     
     def run(self):

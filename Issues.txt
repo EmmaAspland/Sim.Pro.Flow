@@ -13,7 +13,6 @@ Known Issues:
 + Capacity get target days from raw wait days
 + Capacity setup comment incorrect
 + Simulation Trials naming doesn't add to list of simulation names
-+ Clustering Distance Metric LCS - lcsstr means longest common substring calculated, should be lcsseq 
 
 Addressed Issues:
 
@@ -28,3 +27,4 @@ Version: 2.1
 + Summary sheet heatmap should be for data not df
 + Naming of classic centroids excel sheet should be df - remove last _ from save_name - help file updated
 + Names of distance matrix excel sheets too long - codes used instead - help file updated
++ Clustering Distance Metric LCS - lcsstr changed to lcsseq 
