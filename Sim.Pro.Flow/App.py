@@ -1944,7 +1944,7 @@ class ModelSimPanel(wx.Panel):
         self.overall_period = Functions.get_period(self.DataPanel.data, self.DataPanel.headers)
         self.original_individuals = len(self.DataPanel.data)
 
-        name_initial = ['R_', 'F_', 'C_', 'ce_']
+        name_initial = ['R_', 'F_', 'C_', 'P_']
         auto_name = name_initial[self.sim_type.GetCurrentSelection()] + 'Basic'
         self.sim_name.SetValue(auto_name)
 
