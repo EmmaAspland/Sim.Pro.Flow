@@ -973,11 +973,21 @@ class ClusteringPanel(wx.Panel):
         comp_matrix_df = pd.DataFrame(self.comp_Matrix)
 
         # save name
-        selected_metric = self.Metric_type.GetString(self.Metric_type.GetCurrentSelection())
-        if selected_metric == 'Modified Needleman-Wunsch':
-            file_name = selected_metric + '_' + str(self.m) + str(self.g) + str(self.s) + str(self.ns) + '.xlsx'
+        metric_codes = {0: 'Lev',
+                   1: 'DLev',
+                   2: 'Jaro',
+                   3: 'JaroW',
+                   4: 'NW',
+                   5: 'Jac',
+                   6: 'Cos',
+                   7: 'LCS',
+                   8: 'MNW'}
+        selected_metric = self.Metric_type.GetCurrentSelection()
+        selected_code = metric_codes[selected_metric]
+        if selected_code == 'MNW':
+            file_name = selected_code + '_' + str(self.m) + str(self.g) + str(self.s) + str(self.ns)
         else:
-            file_name = selected_metric + '.xlsx'
+            file_name = selected_code
         # save
         with pd.ExcelWriter(self.DataPanel.SaveLoc + 'Clustering_Transition_Matrix.xlsx', engine="openpyxl", mode='a') as writer:
             comp_matrix_df.to_excel(writer,file_name)
@@ -1024,7 +1034,7 @@ class ClusteringPanel(wx.Panel):
 
         
         medoids_set = [key for key, value in self.initial_medoids_dict.items() if value == self.set_medoids]
-        self.save_name = self.Metric_type.GetString(self.Metric_type.GetCurrentSelection()) + '_' + medoids_set[0] + '_'
+        self.save_name = self.Metric_type.GetString(self.Metric_type.GetCurrentSelection()) + '_' + medoids_set[0]
 
         # include centroids in data
         if self.include_centroids_box.IsChecked() == True:

@@ -110,7 +110,7 @@ def classic_cluster(data, df, comp_Matrix, set_medoids, max_k, save_location , s
             column_name = 'Centroids K = ' + str(k)
             save_centroids = pd.DataFrame({'Pathways' : df, column_name: assign})
             with pd.ExcelWriter(save_location + 'Cluster_Centroids.xlsx', engine="openpyxl", mode='a') as writer:
-                save_centroids.to_excel(writer,save_name)
+                save_centroids.to_excel(writer,save_name + '_df')
         
         if results == 'All':
             cframe = cluster_results(cframe, y, k, set_medoids, medoids, pathways_medoids, Frequency, Score)
@@ -301,7 +301,7 @@ def process_cluster(data, df, letters, comp_Matrix, set_medoids, max_k, save_loc
         for i in range(shape[0]*shape[1] - (k - 1)):
             fig.delaxes(ax.flatten()[(k-1)+i])
     fig.subplots_adjust(wspace=0.5, hspace=0.5)
-    plot_name = save_name + results + '_' + str(max_k)
+    plot_name = save_name + '_' + results + '_' + str(max_k)
     fig.savefig(save_location + 'Plots/Process_Violin_Plots/' + plot_name + '.png', bbox_inches='tight', facecolor="None")      
     plt.close() 
 
@@ -310,7 +310,7 @@ def process_cluster(data, df, letters, comp_Matrix, set_medoids, max_k, save_loc
         save_centroids = pd.DataFrame({'Pathways' : df.pathway, column_name: assign})
         with pd.ExcelWriter(save_location + 'Process_Centroids.xlsx', engine="openpyxl", mode='a') as writer:
             all_centroids.to_excel(writer,save_name)
-            save_centroids.to_excel(writer, save_name + 'df')
+            save_centroids.to_excel(writer, save_name + '_df')
 
     cframe = process_cluster_results(cframe, results, set_medoids, tol, original_non_zero, highlight_results)
 

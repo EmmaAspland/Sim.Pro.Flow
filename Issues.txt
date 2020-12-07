@@ -5,7 +5,6 @@ Known Issues:
 
 + Process based simulation should have ciw.no_routing for nodes which are not also arrival nodes.
   - this should not effect the simulation as the routes are formed based on the individual id_number of customer class.
-+ Names of distance matrix excel sheets too long
 + Capacity calculation should consider number of patients not number of tests
 + Capacity error if no solution
 + Capacity disable setup capacity button after first click
@@ -14,7 +13,7 @@ Known Issues:
 + Capacity get target days from raw wait days
 + Capacity setup comment incorrect
 + Simulation Trials naming doesn't add to list of simulation names
-+ Naming of classic centroids excel sheet should be df
++ Clustering Distance Metric LCS - lcsstr means longest common substring calculated, should be lcsseq 
 
 Addressed Issues:
 
@@ -27,3 +26,5 @@ Version: 2.1
 + Language error: Centroids should be Medoids - Process Centroids changed to Process Medoids
 + Simulation name process can be P_ insted of ce_
 + Summary sheet heatmap should be for data not df
++ Naming of classic centroids excel sheet should be df - remove last _ from save_name - help file updated
++ Names of distance matrix excel sheets too long - codes used instead - help file updated
