@@ -2613,7 +2613,7 @@ class AboutFrame(wx.Frame):
 
         about = wx.adv.AboutDialogInfo()
         about.SetName('Sim.Pro.Flow')
-        about.SetVersion('Prototype 2.0')
+        about.SetVersion('Prototype 2.1')
         about.SetDescription('Sim.Pro.Flow is a decision support tool that allows for mapping, modelling and scenario testing of a system. '+
                                 'Sim.Pro.Flow works from pathway strings generated from date stamp data. ' +
                                 'The main feature of Sim.Pro.Flow is to automate the build and visulisation of a discrete event simulation. ' +
