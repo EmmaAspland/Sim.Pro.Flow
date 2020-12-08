@@ -280,10 +280,12 @@ def WaitDays(all_pi, pseq, PSEQ, default_view):
     return(waitdays_data, waitdays_grouped)
 
 
-def PlotWaitDays(axes, waitdays_data_grouped, activity, percent_target, days_target, PSEQ, use_default_max_plot):
+def PlotWaitDays(axes, waitdays_data_grouped, activity, percent_target, days_target, PSEQ, default_max_plot):
     """Plot probability of wait days."""
-    if use_default_max_plot == True:
+    if default_max_plot == True:
         max_plot = 25
+    else:
+        max_plot = default_max_plot
 
     waitdays_plot = waitdays_data_grouped.copy()
     waitdays_plot = waitdays_plot.loc[:max_plot]
@@ -305,18 +307,22 @@ def target_capacity(waitdays_data_grouped, days_target, percent_target):
     target_row = waitdays_data_grouped.loc[waitdays_data_grouped.index == days_target]
     target_row_list = target_row.values.flatten().tolist()
     target_range = [i for i in target_row_list if i < percent_target]
-    outcome_percentage = max(target_range)
-    
-    outcome_column = target_row.columns[(target_row == outcome_percentage).iloc[0]][0]
-    outcome_capacity = outcome_column.split('_')[-1]
-    
-    return(outcome_capacity)
+    # if no solution return 0
+    if len(target_range) == 0:
+        return 0
+    else:
+        outcome_percentage = max(target_range)
+        
+        outcome_column = target_row.columns[(target_row == outcome_percentage).iloc[0]][0]
+        outcome_capacity = outcome_column.split('_')[-1]
+        
+        return(outcome_capacity)
 
 #====================================================================================================
 # Run Capacity
 
 
-def run_capacity(column, period, original_name):
+def run_capacity(data, column, overall_period, days_a_week, original_name):
     """Run the initial analysis for capacity.
     
     Returns expected value and demand.
@@ -325,7 +331,10 @@ def run_capacity(column, period, original_name):
     Counter_num_activity = Dict_num_activity(list_filled)
     num_activity, counts_num_activity, counts_num_activity_non_zero = List_num_activity(Counter_num_activity)
 
-    arrivals = counts_num_activity_non_zero/period
+    # Arrivals for individuals, period considers working days
+    individuals = len(data)
+    period = overall_period * (days_a_week/7)
+    arrivals = individuals/period
 
     num_patients = len(column)
     prob_num_test = []
@@ -381,16 +390,18 @@ def run_target_capacity(save_location, num_calcs, data, activity_codes, calculat
     shape = subplot_shape(size)
     fig, ax = plt.subplots(shape[1], shape[0], figsize=[shape[0]*5, shape[1]*5])
     pos=0
-
+    all_days_targets = {}
+    
     for a, code in tqdm(enumerate(activity_codes.keys())):
         if cap_input_dict[code][5] == 'Yes':
             percent_target, days_target, step_times, step_inc = int(cap_input_dict[code][0]), int(cap_input_dict[code][1]), int(cap_input_dict[code][2]), int(cap_input_dict[code][3])
             percent_target = round(1 - percent_target/100,2)
+            all_days_targets[code] = days_target # added
 
             if original_name == 'original_formatted':
-                expected_value, demand = run_capacity(data[code], overall_period, original_name)
+                expected_value, demand = run_capacity(data, data[code], overall_period, days_a_week, original_name)
             else:
-                expected_value, demand = run_capacity(data[activity_codes[code]], overall_period, original_name)
+                expected_value, demand = run_capacity(data, data[activity_codes[code]], overall_period, days_a_week, original_name)
             if expected_value == 0.0:
                 weekly_capacity_dict[code] = 'Error: Expected_Value_Too_Small'
             else:
@@ -404,13 +415,13 @@ def run_target_capacity(save_location, num_calcs, data, activity_codes, calculat
                 else:
                     axes = ax[int(pos/shape[0]), pos%shape[0]]
                 pos+=1
-                PlotWaitDays(axes, waitdays_data_grouped, code, percent_target, days_target, PSEQ, True)
+                PlotWaitDays(axes, waitdays_data_grouped, code, percent_target, days_target, PSEQ, int(cap_input_dict[code][4])) # changed
                 
                 weekly_capacity = target_capacity(waitdays_data_grouped, days_target, percent_target)                
                 weekly_capacity_dict[code] = weekly_capacity
 
     # merge results
-    calculated_cap = {key: [percent_target, days_target, weekly_capacity_dict[key], 'Yes'] if key in weekly_capacity_dict else [value[0], value[1], value[2], 'No'] for key, value in calculated_cap.items()}
+    calculated_cap = {key: [percent_target, all_days_targets[key], weekly_capacity_dict[key], 'Yes'] if key in weekly_capacity_dict else [value[0], value[1], value[2], 'No'] for key, value in calculated_cap.items()}
 
     # remove blank subplots
     for i in range(shape[0]*shape[1] - size):

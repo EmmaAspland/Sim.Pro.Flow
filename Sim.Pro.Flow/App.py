@@ -2196,9 +2196,9 @@ class CapacityInputGrid(wx.Panel):
         # top buttons
         capacity_sizer = wx.BoxSizer(wx.HORIZONTAL)
         capacity_sizer.AddSpacer(5)
-        AutoSetup_capacity = wx.Button(parent=self, label = "Set up Capacity")
-        AutoSetup_capacity.Bind(event=wx.EVT_BUTTON, handler=self.onAutoSetupCapacity)
-        capacity_sizer.Add(AutoSetup_capacity)
+        self.AutoSetup_capacity = wx.Button(parent=self, label = "Set up Capacity")
+        self.AutoSetup_capacity.Bind(event=wx.EVT_BUTTON, handler=self.onAutoSetupCapacity)
+        capacity_sizer.Add(self.AutoSetup_capacity)
         capacity_sizer.AddSpacer(10)
         calc_capacity = wx.Button(self, label='Calculate')
         calc_capacity.Bind(event=wx.EVT_BUTTON, handler=self.onCalcCapacity)
@@ -2231,21 +2231,20 @@ class CapacityInputGrid(wx.Panel):
         """Fill capacity input grid with default options."""
         # Initial empty dictionary to collect results
         if len(self.SimulationPanel.CalculatedCapacity) == 1:
-            self.SimulationPanel.CalculatedCapacity['Initial'] = {activity: '' for activity in self.DataPanel.letters}
+            # If first run No then 0 capacity
+            self.SimulationPanel.CalculatedCapacity['Initial'] = {activity: ['', '', '0']  for activity in self.DataPanel.letters}
             self.calc_name = 'Initial'
         
         # Setup Input grid
         if self.num_setup == 0:
             self.InputGrid.AppendRows(len(self.DataPanel.letters))
-        # default target days from overall target / num of activities
-        target_days = int(int(self.ModelSimPanel.target_choice.GetValue()) / len(self.DataPanel.letters))
+        # default target days from dataframe_T4
         # minimum 1
-        if target_days == 0:
-            target_days = 1
+        target_days = [math.floor(wait_time) if wait_time != 0 else 1 for r, wait_time in enumerate(self.DataPanel.dataframe_T4.iloc[:,1])]
         # default inputs
-        initial_capacity_inputs = [90,target_days,5,5,25,'Yes']
-        for i, cap_input in enumerate(initial_capacity_inputs):   
-            for index, key in enumerate(self.DataPanel.letters):
+        for index, key in enumerate(self.DataPanel.letters):            
+            initial_capacity_inputs = [90,str(target_days[index]),10,2,str(target_days[index]+5),'Yes']
+            for i, cap_input in enumerate(initial_capacity_inputs):     
                 self.InputGrid.SetCellValue(index,i,str(cap_input))
 
         self.int_choices = wx.grid.GridCellNumberEditor(min=0, max=1000000) 
@@ -2266,6 +2265,8 @@ class CapacityInputGrid(wx.Panel):
                 self.BottomResultsPanel.ResultsGrid.SetRowLabelValue(index, key)
         
         self.num_setup += 1
+        # Disable setup capacity button
+        self.AutoSetup_capacity.Disable()
 
 
     def onCalcCapacity(self, event):
