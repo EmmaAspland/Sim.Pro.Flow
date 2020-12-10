@@ -220,7 +220,7 @@ def define_servers(sim_type, warm_type, letters, overall_period, capacity, week,
     all_server_schedules = build_server_schedules(sim_type, capacity, total_arrival_days, week)
 
     if warm_type == 'Warm Start':
-        if letters[0] == 'Dummy':
+        if sim_type == 'Raw Pathways':
             warm = [0] + warm
         all_server_schedules_WS = copy.deepcopy(all_server_schedules)
         for i, wait in enumerate(warm):

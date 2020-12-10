@@ -33,3 +33,8 @@ Version: 2.1
 + Capacity calculation should consider number of patients not number of tests - Updated run_capacity
 + Capacity error if no solution - Appears to be solved in target_capacity
 + Capacity error if No on first fun - Solved through initial CalculatedCapacity in App
+
+
+Date: 10-12-2020
+Version: 2.1
++ Warm Start was not detecting dummy node in Raw Pathways - Solved by detecting sim_type
