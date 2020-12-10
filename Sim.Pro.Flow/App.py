@@ -1716,6 +1716,13 @@ class ModelSimPanel(wx.Panel):
 
         self.SetSizer(OverMain_sizer)   
 
+        # Use the Simulation Target Choice for original Results on Select data
+        self.DataPanel.browse_button.Bind(event=wx.EVT_BUTTON, handler=self.onGetTarget)
+
+    def onGetTarget(self, event):
+        self.DataPanel.target = int(self.target_choice.GetValue())
+        event.Skip()
+
 
     def onAutoSetupCustom(self):
         """Add edit sim notebook pages - only on first press of auto set up sim."""
