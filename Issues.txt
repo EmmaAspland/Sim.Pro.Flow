@@ -43,3 +43,4 @@ Version: 2.1
 Date: 15-12-2020
 Version: 2.1
 + Utilisation was incorrect for warm ups - Solved
++ Simulation name can't be changed for first simulation - Solved

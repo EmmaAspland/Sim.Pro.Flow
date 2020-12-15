@@ -1524,6 +1524,7 @@ class ModelSimPanel(wx.Panel):
         self.Capacity_Dict = {}
         self.Routing_Dict = {}
 
+        self.all_sim_names = []
         self.current_sim_name = ''
         self.Create_Pages = 0
 
@@ -2114,8 +2115,6 @@ class ModelSimPanel(wx.Panel):
         self.DataPanel.target = int(self.target_choice.GetValue())
 
         # ensure sim name is unique
-        if self.sim_name.IsModified() == False:
-            self.all_sim_names = []
         if self.sim_name.GetValue() in self.all_sim_names:
             error_message = wx.MessageBox(parent=None, message = 'Please enter a unique simulation name in the \'Simulation Name\' box. \n Already used: ' + ', '.join(self.all_sim_names), 
                                         caption='Error',style= wx.OK)
