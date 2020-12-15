@@ -347,13 +347,12 @@ def plot_activity_waittimes(save_location, simulation_name, df_all, letters):
 
 #---------------- Utilisation ------------------
 
-def cap_utilisation(sim_recs, letters):
+def cap_utilisation(sim_recs, letters, min_date, max_date):
     """Gets capacity used per simulation day.
     
     Number remaining in queue at the end of each day recorded.
-    """
-    max_date = math.ceil(sim_recs.exit_date.max())
-    
+    """    
+
     all_cap_used = {}
     all_queue_remaining = {}
     for i, activity in enumerate(letters):
@@ -362,7 +361,7 @@ def cap_utilisation(sim_recs, letters):
 
         cap_used = []
         queue_remaining = []
-        for day in range(1, max_date):
+        for day in range(min_date, max_date+1): # changed
             start_day = day - 1
             finish_day = day
             sec = sim_recs_n.loc[(sim_recs_n.service_start_date >= start_day) & 
@@ -386,16 +385,22 @@ def cap_utilisation(sim_recs, letters):
     return(all_cap_used, all_queue_remaining)
 
 
-def actual_cap_reduced(server_schedule, all_cap_used, letters):
+def actual_cap_reduced(server_schedule, all_cap_used, letters, min_date, max_date):
     """Gets capacity per day over server schedule period."""
     server_schedule = copy.deepcopy(server_schedule)
     # remove dummy server schedule
     if len(server_schedule) != len(letters):
         server_schedule.pop(0)
     
-    actual_cap = [[i[0] for i in j] for j in server_schedule]
-    # Uses code A as placeholder
-    actual_cap = [i[0:len(all_cap_used['A'])] for i in actual_cap]
+    all_actual_cap = [[i[0] for i in j] for j in server_schedule]
+    actual_cap = [i[min_date-1:max_date] for i in all_actual_cap] # changed to collect from min to max date
+
+    # added to account for ciw schedules loop
+    repeat = max_date - len(all_actual_cap[0])
+    if repeat > 0:
+        repeat_extra = [i[0:repeat] for i in all_actual_cap]
+        actual_cap = [actual + extra for actual, extra in zip(actual_cap, repeat_extra)]
+
     actual_cap_dict = {letter: actual_cap[i] for i,letter in enumerate(letters)}
     return actual_cap_dict
 
@@ -419,9 +424,10 @@ def cap_util_percentage(server_schedule, all_cap_used, letters, actual_cap):
     return all_cap_perc_used
 
 
-def plot_Perc_Cap_Used(all_cap_perc_used, save_location, simulation_name):
+def plot_Perc_Cap_Used(all_cap_perc_used, save_location, simulation_name, min_date, max_date):
     """Plot the percentage of capacity used per simulation day."""
-    x_days = [i for i in range(len(all_cap_perc_used['A']))]
+    plot_max = max_date - min_date + 1 # added to find the plot range
+    x_days = [i for i in range(plot_max)] # changed to plot over plot_max range
     
     size = len(all_cap_perc_used)
     shape = subplot_shape(size)
@@ -433,7 +439,7 @@ def plot_Perc_Cap_Used(all_cap_perc_used, save_location, simulation_name):
         locy = int(pos/shape[0])
         locx = pos%shape[0]
         pos+=1
-        ax[locy,locx].plot(x_days,cap_perc)
+        ax[locy,locx].plot(x_days,cap_perc, marker='.') # added marker
         ax[locy,locx].set_title(code)
         ax[locy,locx].set_ylabel('Percentage', fontsize=14)
         ax[locy,locx].set_xlabel('Day', fontsize=14)
@@ -449,22 +455,22 @@ def plot_Perc_Cap_Used(all_cap_perc_used, save_location, simulation_name):
     plt.close()
 
 
-def plot_queue_remaining(all_queue_remaining, save_location, simulation_name):
+def plot_queue_remaining(all_queue_remaining, save_location, simulation_name, min_date, max_date):
     """Plot the queue remaining at the end of each simulation day."""
-    # uses code A as a placeholder
-    x_days = [i for i in range(len(all_queue_remaining['A']))]
+    plot_max = max_date - min_date + 1 # added to find the plot range
+    x_days = [i for i in range(plot_max)] # changed to plot over plot_max range
     
     size = len(all_queue_remaining)
     shape = subplot_shape(size)
     fig, ax = plt.subplots(shape[1], shape[0], figsize=[shape[0]*5, shape[1]*5])
     pos = 0
 
-    for code, cap_perc in all_queue_remaining.items():
+    for code, queue in all_queue_remaining.items(): # changed variable name
         # create plot
         locy = int(pos/shape[0])
         locx = pos%shape[0]
         pos+=1
-        ax[locy,locx].plot(x_days,cap_perc)
+        ax[locy,locx].plot(x_days,queue, marker='.') # changed variable name, added marker
         ax[locy,locx].set_title(code)
         ax[locy,locx].set_ylabel('Number of Individuals', fontsize=14)
         ax[locy,locx].set_xlabel('Day', fontsize=14)
@@ -480,26 +486,33 @@ def plot_queue_remaining(all_queue_remaining, save_location, simulation_name):
     plt.close()
 
 
-def util_results(all_cap_perc_used, week_type):
+def util_results(all_cap_perc_used, week_type, min_date):
     """Reports total average percentage capacity used and average percentage capacity used per named day."""
+
+    starting_day_adjust = (min_date-1)%7 # added for itterative to adjust for not starting on monday
+
     util_results_dict = {}
     for activity, cap_perc_used in all_cap_perc_used.items():
-        week_days = len(cap_perc_used)*(week_type/7)
-        no_weeks = math.ceil(len(cap_perc_used)/7)
+        possible_days = [cap_perc for cap_perc in cap_perc_used if np.isnan(cap_perc) != True] # added - no. possible days 
+        all_util_100 = [round((len([i for i in cap_perc_used if i == 1.0])/len(possible_days))*100,2)] # percent of possible days run use 100% of capacity
         
-        all_util_100 = [round((len([i for i in cap_perc_used if i == 1.0])/week_days)*100,2)]
-        columns_names = ['Percentage Util 100']
+        cap_perc_used = [np.nan]*starting_day_adjust +  cap_perc_used # added for itterative to adjust for not starting on monday
 
         day_perc = []
         for day in range(week_type):
-            average_perc_day = (sum([cap_per for i,cap_per in enumerate(cap_perc_used) if i % 7 == day])/no_weeks)*100
-            day_perc.append(round(average_perc_day,2))
-            columns_names.append('Average Percent Util Day_' + str(day))
+            average_perc_day_list = [cap_per for i,cap_per in enumerate(cap_perc_used) if i % 7 == day] # collect all percent for named day
+            average_perc_day_list = [average for average in average_perc_day_list if np.isnan(average) != True] # added for warm start and itterative - remove all nan
+            if len(average_perc_day_list) == 0: # if never run on day
+                day_perc.append(np.nan)                
+            else:
+                average_perc_day = (sum(average_perc_day_list)/len(average_perc_day_list))*100
+                day_perc.append(round(average_perc_day,2))
             
         util_results_dict[activity] = all_util_100 + day_perc
         
-        df_util_results = pd.DataFrame.from_dict(util_results_dict, orient='index')
-        df_util_results.columns = columns_names
+    df_util_results = pd.DataFrame.from_dict(util_results_dict, orient='index')
+    columns_names = ['Percentage Util 100%'] + ['Average Percent Util Day_' + str(day) for day in range(week_type)]
+    df_util_results.columns = columns_names
     
     return df_util_results
 
@@ -513,14 +526,17 @@ def run_utilisation_results(sim_recs, letters, server_schedule, week_type, save_
     if letters[0] == '':
         letters = letters[1:]
 
-    all_cap_used, all_queue_remaining = cap_utilisation(sim_recs, letters)
-    actual_cap = actual_cap_reduced(server_schedule, all_cap_used, letters)
+    max_date = math.ceil(sim_recs.exit_date.max()) # added
+    min_date = math.ceil(sim_recs.exit_date.min()) # added
+
+    all_cap_used, all_queue_remaining = cap_utilisation(sim_recs, letters, min_date, max_date)
+    actual_cap = actual_cap_reduced(server_schedule, all_cap_used, letters, min_date, max_date)
     all_cap_perc_used = cap_util_percentage(server_schedule, all_cap_used, letters, actual_cap)
 
-    plot_Perc_Cap_Used(all_cap_perc_used, save_location, simulation_name)
-    plot_queue_remaining(all_queue_remaining, save_location, simulation_name)
+    plot_Perc_Cap_Used(all_cap_perc_used, save_location, simulation_name, min_date, max_date)
+    plot_queue_remaining(all_queue_remaining, save_location, simulation_name, min_date, max_date)
 
-    df_util_results = util_results(all_cap_perc_used, week_type)
+    df_util_results = util_results(all_cap_perc_used, week_type, min_date)
 
     return df_util_results
 

@@ -1464,13 +1464,13 @@ class UtilResultsGrid(wx.Frame):
         # top buttons
         util_sizer = wx.BoxSizer(wx.HORIZONTAL)
         util_sizer.AddSpacer(5)
-        Title = wx.StaticText(self, label=self.SimulationPanel.tabOne_Setup.current_sim_name + ' - Average Utilisation Percentage')
+        Title = wx.StaticText(self, label=self.SimulationPanel.tabOne_Setup.current_sim_name + ' - Percentage of days that used all capacity and named day average utilisation percentage')
         util_sizer.Add(Title)
         
         # grid
         self.UtilGrid = gridlib.Grid(self)
         self.UtilGrid.CreateGrid(0,8)
-        self.UtilGrid.SetColLabelValue(0, 'Total')
+        self.UtilGrid.SetColLabelValue(0, 'Percentage Util 100%') # changed name for clarity
         for c, day in enumerate(self.name_days):
             self.UtilGrid.SetColLabelValue(c+1, day)
         for c in range(8):

@@ -412,6 +412,8 @@ def RunSimData(Q, warm_type, warm, letters, Servers_Schedules, week_type,
     if basic == True:
         week_type = int(week_type[0])
         df_utilisation = sim.run_utilisation_results(df_recs, current_letters, Servers_Schedules, week_type, save_location, simulation_name)
+        with pd.ExcelWriter(save_location + 'Raw_Sim_Results.xlsx', engine="openpyxl", mode='a') as writer: # added to save util table
+            df_utilisation.to_excel(writer,simulation_name + '_Util') # added to save util table
         return(dataframe_T1, dataframe_T2, dataframe_T3, dataframe_T4, df_utilisation)
     else:
         return(dataframe_T1, dataframe_T2, dataframe_T3, dataframe_T4)
