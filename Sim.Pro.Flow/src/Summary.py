@@ -147,7 +147,7 @@ def SummarySheet(data, df, activity_codes, save_location, original_name):
         row_cells[1].text = value
 
     document.add_heading('Activity Summary', 1)
-    document.add_paragraph('The frequency of occurance for each activity can be seen in Figure 1.')
+    document.add_paragraph('The frequency of occurrence for each activity can be seen in Figure 1.')
     document.add_picture(save_location + 'Plots/Summary/Activity_Frequency.png', width=Inches(4))
     
     document.add_heading('Pathway Summary', 1)
@@ -163,7 +163,7 @@ def SummarySheet(data, df, activity_codes, save_location, original_name):
         row_cells = table_occur.add_row().cells
         row_cells[0].text = index_occur[i]
         row_cells[1].text = str(num_occur[i])
-    document.add_paragraph('\n The heatmap in Figure 2 is a visual representation of the all the unique pathways included in the data.')
+    document.add_paragraph('\n The heatmap in Figure 2 is a visual representation of the all the pathways included in the data.')
     document.add_picture(save_location + 'Plots/Summary/Heatmap_All_Pathways.png', width=Inches(6))
 
     document.add_heading('Time Summary', 1)
