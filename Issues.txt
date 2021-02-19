@@ -5,6 +5,8 @@ Known Issues:
 
 + Process based simulation should have ciw.no_routing for nodes which are not also arrival nodes.
   - this should not effect the simulation as the routes are formed based on the individual id_number of customer class.
++ Utilisation plots for process medoids appear not as expected for final subplot - this needs investigating.
++ Simulation results histograms - need to check if bins apply correctly.
 
 Addressed Issues:
 
